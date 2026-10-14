@@ -392,7 +392,7 @@
 <h4>Match the channel below</h4>
 <p>In the channel chat menu, choose <strong>Set Region Scope</strong>. Add the region if missing, then select it.</p>
 <p>
-<strong>#yorkshire</strong> → <code>yorkshire</code>
+<strong>#yorkshire</strong> → <code>yorkshire</code> or <code>eng-yh</code>
 <br/>
 <strong>#northwest</strong> → <code>northwest</code>
 <br/>
@@ -427,6 +427,11 @@
 <p>Our main community region.</p>
 </article>
 <article>
+<span>Required · Secondary Region</span>
+<code>eng-yh</code>
+<p>Our secondary region.</p>
+</article>
+<article>
 <span>Required · neighbouring region</span>
 <code>northwest</code>
 <p>Routes across the Pennines.</p>
@@ -439,7 +444,7 @@
 </div>
 <div class="command-panel">
 <div>
-<p class="card-kicker">Six commands. One simple setup.</p>
+<p class="card-kicker">Seven commands. One simple setup.</p>
 <h4>Apply to every Yorkshire repeater</h4>
 <p>On current stable stock firmware (v1.15.0 or later), log in and enter each CLI command separately. Check the responses, then save.</p>
 <p class="required-region">
@@ -451,6 +456,7 @@
 <code>region put yorkshire
 region default yorkshire
 region put eng-ne
+region put eng-yh
 region put northwest
 region denyf *
 region save</code>
