@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quick settings | MeshCore Yorkshire</title>
+<meta name="description" content="MeshCore Yorkshire repeater commands and companion region setting.">
+<link rel="canonical" href="https://meshcoreyorkshire.uk/settings">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+<style>
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.page{width:min(760px,calc(100% - 32px));margin:0 auto;padding:32px 0 40px}
+.home{display:inline-flex;align-items:center;gap:12px;font-weight:750;margin-bottom:36px}
+.home span{color:var(--cyan)}
+h1{font-size:clamp(34px,7vw,54px);line-height:1.08;letter-spacing:-.04em}
+.lead{color:var(--slate);margin:16px 0 26px;line-height:1.65}
+.panel{background:var(--charcoal);border:1px solid #b7c6cd40;border-radius:12px;padding:24px;margin-top:18px}
+.panel h2{font-size:22px;font-weight:750;margin:0}
+.panel p{color:var(--slate);line-height:1.65;margin-top:12px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+button{background:var(--cyan);color:#03131d;border-radius:7px;padding:10px 16px;font-weight:750;cursor:pointer;min-height:44px}
+pre{background:#02090f;color:#8cebf3;border:1px solid #18d5e847;border-radius:8px;padding:18px;margin-top:18px;overflow-x:auto;font-size:clamp(12px,2.9vw,15px);line-height:1.85}
+.scope{color:var(--white);font-weight:750}
+.scope code{color:var(--cyan)}
+.status{font-size:14px;min-height:23px}
+.bottom{color:var(--slate);font-size:14px;margin-top:28px}
+.bottom a{text-decoration:underline;text-underline-offset:4px}
+</style>
+</head>
+<body>
+<main class="page"><a class="home" href="/"><span aria-hidden="true">←</span> MeshCore Yorkshire</a>
+<h1 style="font-size:32px;margin-bottom:18px">Quick settings guide</h1>
+<button id="enlarge" type="button" aria-label="Enlarge the settings guide" style="display:block;width:100%;padding:0;background:transparent"><img id="guide" src="settings-guide.png" alt="MeshCore Yorkshire: repeater CLI commands, companion Network Settings and Default Region Scope, selecting or adding yorkshire and saving." style="display:block;width:100%;height:auto;border-radius:12px"></button>
+<p class="bottom" style="margin-top:12px">Tap the graphic to enlarge. Adapted from app screenshots with personal details removed.</p>
+<details class="panel"><summary style="cursor:pointer;font-size:20px;font-weight:750;min-height:44px">Copy commands &amp; read the setup steps</summary><section class="panel" aria-labelledby="repeater-title">
+<div class="panel-head"><h2 id="repeater-title">Repeater commands</h2><button type="button" id="copy" hidden>Copy commands</button></div>
+<p>Log in to your repeater’s CLI. Enter each command separately, in the order shown, and check each response.</p>
+<pre><code id="commands">region put yorkshire
+region default yorkshire
+region denyf *
+region put eng-ne
+region put eng-yh
+region put northwest
+region save
+set flood.max.advert 10
+set flood.advert.interval 35
+set advert.interval 237</code></pre>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+</section>
+<p>Companion: <strong>Settings → Network Settings → Default Region Scope → yorkshire</strong>. Return to Settings and tap <strong>✓</strong> to save.</p><div style="margin-top:24px;padding:20px;border:1px solid #18d5e847;border-radius:8px">
+<h3 style="font-size:20px;font-weight:750">If yorkshire is not listed</h3>
+<ol style="list-style:decimal;padding-left:24px;line-height:1.8;margin-top:12px;color:var(--slate)">
+<li>On <strong>Select Region</strong>, tap <strong>+</strong> at the top right.</li>
+<li>In <strong>Add Region</strong>, tap <strong>Region Name</strong> and type <code>yorkshire</code> — lowercase, without a #.</li>
+<li>Tap the <strong>✓ in the top-right app toolbar</strong> to add the region.</li>
+<li>On <strong>Select Region</strong>, select <code>yorkshire</code>.</li>
+<li>Return to <strong>Settings</strong> and tap its top-right <strong>✓</strong> to save.</li>
+</ol>
+</div></details>
+<p class="bottom"><a href="/">Back to the full MeshCore Yorkshire guide</a></p></main>
+<dialog id="zoom" style="width:98vw;max-width:1400px;max-height:96vh;padding:16px;background:#07131f;color:white;border:1px solid #18d5e8;border-radius:12px;overflow:auto"><button id="close-zoom" type="button" style="position:sticky;top:0;margin-bottom:12px">Close ×</button><img id="zoom-image" alt="Full-size settings guide" style="display:block;width:100%;height:auto"></dialog>
+<script>const zoom=document.getElementById('zoom');document.getElementById('enlarge').addEventListener('click',()=>{document.getElementById('zoom-image').src=document.getElementById('guide').src;zoom.showModal();});document.getElementById('close-zoom').addEventListener('click',()=>zoom.close());</script>
+<script>
+const button=document.getElementById('copy');
+if(navigator.clipboard&&window.isSecureContext){
+button.hidden=false;
+button.addEventListener('click',async()=>{
+const status=document.getElementById('status');
+try{
+await navigator.clipboard.writeText(document.getElementById('commands').textContent);
+status.textContent='Commands copied. Enter each command separately in your repeater CLI.';
+}catch{
+status.textContent='Could not copy automatically. Select and copy the commands above.';
+}
+});
+}
+</script>
+</body>
+</html>
+
